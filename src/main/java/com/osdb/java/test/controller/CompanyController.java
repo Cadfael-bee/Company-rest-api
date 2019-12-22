@@ -22,7 +22,7 @@ public class CompanyController {
 	private final CompanyService companyService;
 
 	@GetMapping("/")
-	@ApiOperation(value = "Finds all the companies", response = List.class)
+	@ApiOperation(value = "Gets all the companies")
 	public List<Company> getAllCompanies() {
 		return companyService.getAll();
 	}
