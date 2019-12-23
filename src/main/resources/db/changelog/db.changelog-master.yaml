@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog.yaml
+  - changeSet:
+      id: 1
+      author: db_user
+      changes:
+        - createTable:
+            tableName: company
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: founded
+                  type: date
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: db_user
+      comment: "Create default companies"
+      changes:
+        - insert:
+            tableName: company
+            columns:
+              - column:
+                  name: name
+                  value: "MicroSoft"
+              - column:
+                  name: description
+                  value: "American multinational technology company"
+              - column:
+                  name: founded
+                  value: "1975-04-04"
+        - insert:
+            tableName: company
+            columns:
+              - column:
+                  name: name
+                  value: "Starbucks"
+              - column:
+                  name: description
+                  value: "American coffee company and coffeehouse chain"
+              - column:
+                  name: founded
+                  value: "1971-03-31"
+      rollback:
+        - delete:
+            tableName: company
+            where: name in ('MicroSoft', 'Starbucks')
