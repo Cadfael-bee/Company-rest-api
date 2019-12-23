@@ -1,4 +1,4 @@
-#Build & Run instructions
+# Build & Run instructions
 
 1)Clone or download repository
 
